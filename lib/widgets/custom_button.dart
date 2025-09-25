@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
           elevation: 2.0,
-          padding: EdgeInsets.zero, // Use fixed height instead
+          padding: EdgeInsets.zero,
         ),
         child: Text(
           text,

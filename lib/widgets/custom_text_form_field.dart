@@ -9,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onChanged;
+  final String? Function(String?)? validator;
   const CustomTextFormField({
     Key? key,
     required this.label,
@@ -17,6 +18,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.inputFormatters,
     this.onChanged,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -25,9 +27,7 @@ class CustomTextFormField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            bottom: 8.0,
-          ), // Space between label and field
+          padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
             label,
             style: const TextStyle(
@@ -41,6 +41,7 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           obscureText: obscureText,
           onChanged: onChanged,
+          validator: validator,
           inputFormatters: inputFormatters ?? [],
           decoration: InputDecoration(
             hintText: hintText,
