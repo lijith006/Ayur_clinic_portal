@@ -1,0 +1,1 @@
+# Ayur_clinic_portal
