@@ -13,14 +13,14 @@ class BranchProvider extends ChangeNotifier {
   List<Branch> get branches => _branches;
   bool get isLoading => _isLoading;
   String? get error => _error;
-
+  //fetch branches
   Future<void> fetchBranches() async {
     _isLoading = true;
     _error = null;
     notifyListeners();
 
     try {
-      _branches = await repository.fetchBranches(); // create API in repo
+      _branches = await repository.fetchBranches();
     } catch (e) {
       _error = e.toString();
     }

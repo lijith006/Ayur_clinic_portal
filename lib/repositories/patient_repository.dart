@@ -6,11 +6,11 @@ class PatientRepository {
   final ApiClient apiClient;
   PatientRepository(this.apiClient);
 
+  //fetch patients
   Future<List<Patient>> fetchPatients() async {
     final response = await apiClient.get('/PatientList');
     print("PatientList API response: $response");
 
-    // response is  Map<String, dynamic>
     if (response['status'] == true && response['patient'] != null) {
       final List<dynamic> data = response['patient'];
       return data.map((e) => Patient.fromJson(e)).toList();
@@ -19,11 +19,22 @@ class PatientRepository {
     }
   }
 
-  Future<bool> registerPatient(Map<String, String> patientData) async {
-    final response = await apiClient.post('/PatientUpdate', body: patientData);
+  Future<bool> savePatient(
+    Map<String, String> patientData, {
+    String? id,
+  }) async {
+    final body = Map<String, String>.from(patientData);
+
+    //
+    body["id"] = id ?? body["id"] ?? "";
+
+    final response = await apiClient.post('/PatientUpdate', body: body);
+    print("PatientUpdate API response: $response");
+
     return response['status'] == true;
   }
 
+  //fetch branches
   Future<List<Branch>> fetchBranches() async {
     final response = await apiClient.get("/BranchList");
     if (response['status'] == true) {

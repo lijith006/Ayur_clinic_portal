@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('assets/empty_list.png'),
+                      Image.asset('assets/icons/empty.jpg'),
                       const Text('No patients available'),
                     ],
                   ),

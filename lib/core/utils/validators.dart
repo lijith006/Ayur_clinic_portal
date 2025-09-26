@@ -38,4 +38,19 @@ class Validator {
 
     return null;
   }
+
+  static String? validatePhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone number is required';
+    }
+
+    // Example: 10-digit phone number
+    final phoneRegex = RegExp(r'^[0-9]{10}$');
+
+    if (!phoneRegex.hasMatch(value)) {
+      return 'Enter a valid 10-digit phone number';
+    }
+
+    return null;
+  }
 }

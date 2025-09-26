@@ -13,7 +13,7 @@ class PatientProvider extends ChangeNotifier {
   List<Patient> get patients => _patients;
   bool get isLoading => _isLoading;
   String? get error => _error;
-
+  //fetch patients
   Future<void> fetchPatients() async {
     _isLoading = true;
     _error = null;
@@ -29,18 +29,21 @@ class PatientProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> registerPatient(Map<String, String> patientData) async {
+  //register patients
+  Future<void> savePatient(
+    Map<String, String> patientData, {
+    String? id,
+  }) async {
     _isLoading = true;
     _error = null;
     notifyListeners();
 
     try {
-      final success = await repository.registerPatient(patientData);
-      // refresh list after registration
+      final success = await repository.savePatient(patientData, id: id ?? "");
       if (success) {
         await fetchPatients();
       } else {
-        _error = "Failed to register patient";
+        _error = "Failed to save patient";
       }
     } catch (e) {
       _error = e.toString();

@@ -1,16 +1,19 @@
-# ayur_clinic_portal
+Ayur Clinic Portal
 
-A new Flutter project.
+This project provides simple APIs to manage patients of an Ayurvedic Centre.
 
-## Getting Started
+🚀 Features
 
-This project is a starting point for a Flutter application.
+User Login with username & password.
 
-A few resources to get you started if this is your first Flutter project:
+Patient List – view all registered patients (with pull-to-refresh).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Register Patient – add new patients with branch, treatment, and location details.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+PDF Generation – create patient details PDF in the required format (from Figma).
+
+Branch List – fetch available branches.
+
+Treatment List – fetch available treatments.
+
+Use pull-to-refresh for patient list.
