@@ -10,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onChanged;
   final String? Function(String?)? validator;
+  final AutovalidateMode autovalidateMode;
   const CustomTextFormField({
     Key? key,
     required this.label,
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.onChanged,
     this.validator,
+    this.autovalidateMode = AutovalidateMode.disabled,
   }) : super(key: key);
 
   @override
@@ -42,6 +44,7 @@ class CustomTextFormField extends StatelessWidget {
           obscureText: obscureText,
           onChanged: onChanged,
           validator: validator,
+          autovalidateMode: autovalidateMode,
           inputFormatters: inputFormatters ?? [],
           decoration: InputDecoration(
             hintText: hintText,

@@ -1,34 +1,52 @@
 import 'package:ayur_clinic_portal/core/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PatientCard extends StatelessWidget {
+  final int index;
   final String name;
   final String package;
-  final String date;
-  final String time;
+  final DateTime date;
+  final String? time;
   final VoidCallback? onViewDetails;
 
   const PatientCard({
     Key? key,
+    required this.index,
     required this.name,
     required this.package,
     required this.date,
-    required this.time,
-    this.onViewDetails,
+    this.time,
+    required this.onViewDetails,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formattedDate = DateFormat('dd/MM/yyyy').format(date);
     return Card(
       color: AppColors.cardBackground,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-      child: ListTile(
-        title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Column(
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(package, overflow: TextOverflow.ellipsis),
-            SizedBox(height: 15),
+            // Patient name
+            Text(
+              "${index + 1}. $name",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            const SizedBox(height: 6),
+
+            // Package
+            Text(
+              package,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(color: Colors.black87),
+            ),
+            const SizedBox(height: 15),
+
+            // Row with Date
             Row(
               children: [
                 const Icon(
@@ -36,19 +54,33 @@ class PatientCard extends StatelessWidget {
                   size: 16.0,
                   color: AppColors.dateColor,
                 ),
-                const SizedBox(width: 4.0),
-                Text(date, style: TextStyle(color: AppColors.dateColor)),
-                const SizedBox(width: 4.0),
-                Text(date, style: TextStyle(color: AppColors.dateColor)),
+                const SizedBox(width: 6.0),
+                Text(
+                  formattedDate,
+                  style: const TextStyle(color: AppColors.dateColor),
+                ),
+                const SizedBox(width: 16.0),
+                const Icon(
+                  Icons.people,
+                  size: 16.0,
+                  color: AppColors.dateColor,
+                ),
+                const SizedBox(width: 6.0),
+                const Text(
+                  "Jithesh",
+                  style: TextStyle(color: AppColors.dateColor),
+                ),
               ],
             ),
 
+            const SizedBox(height: 10),
             const Divider(thickness: 1, color: Colors.grey),
+
+            // View Booking Details
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('View Booking Details'),
-
+                const Text('View Booking Details'),
                 IconButton(
                   icon: const Icon(Icons.chevron_right),
                   onPressed: onViewDetails,
@@ -57,11 +89,6 @@ class PatientCard extends StatelessWidget {
             ),
           ],
         ),
-
-        // trailing: IconButton(
-        //   icon: const Icon(Icons.chevron_right),
-        //   onPressed: onViewDetails,
-        // ),
       ),
     );
   }
